@@ -65,6 +65,12 @@ public class Controllerpuertorico {
 		total.setCellValueFactory(new PropertyValueFactory<>("total"));
 		valor.setStyle("-fx-alignment: CENTER-LEFT");
 	}*/
+	
+	public ObservableList<Modelpuertorico> busquedaList(String busca){
+		
+		return puertoricoDao.busquedaLista(busca);
+	}
+	
 	public ObservableList<Modelpuertorico> getPuertorico(){
 		
 		return puertoricoDao.listaPuertorico();
