@@ -26,7 +26,7 @@ public class Controllerpuertorico {
 		this.puertoricoDao= new Daopuertorico(new Factory().recuperaConexion());
 	}
 	
-	@FXML
+	/*@FXML
 	private Button btnNuevo;
 	@FXML
 	private TableView<Modelpuertorico> tablaPuertorico;
@@ -47,8 +47,7 @@ public class Controllerpuertorico {
 	
 	private ObservableList <Modelpuertorico> puertorico= FXCollections.observableArrayList();
 	
-
-	/*@Override
+	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 	
 		id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -66,22 +65,16 @@ public class Controllerpuertorico {
 		total.setCellValueFactory(new PropertyValueFactory<>("total"));
 		valor.setStyle("-fx-alignment: CENTER-LEFT");
 	}*/
-	
-	
 	public ObservableList<Modelpuertorico> getPuertorico(){
 		
 		return puertoricoDao.listaPuertorico();
 	}
-	
-	@FXML
+/*	@FXML
 	private void botonNuevo(ActionEvent event) {
 		//btnNuevo= new Button();
-		
 		/*btnNuevo.setOnAction(e ->{
 			System.out.println("Si esta funcionando");
-				
-	});*/
+	});
 		System.out.println("Si esta funcionando, Magucho");
-			
-	}
+	}*/
 }
