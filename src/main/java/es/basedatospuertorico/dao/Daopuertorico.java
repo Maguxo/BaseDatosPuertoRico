@@ -23,7 +23,7 @@ public class Daopuertorico {
 		ObservableList<Modelpuertorico> basedato= FXCollections.observableArrayList();
 		try {
 			final PreparedStatement sta= con.prepareStatement(""
-					+ "SELECT id,fecha,referencia,categoria,cantidad,valor_unitario,total FROM puertorico");
+					+ "SELECT id, fecha, referencia, categoria, cantidad, valor_unitario, total FROM puertorico");
 			try(sta){
 				sta.execute();
 				final ResultSet rs= sta.getResultSet();
@@ -36,9 +36,11 @@ public class Daopuertorico {
 								rs.getString("referencia"),
 								rs.getString("categoria"),
 								rs.getInt("cantidad"),
-								rs.getDouble("valor"),
+								rs.getDouble("valor_unitario"),
 								rs.getDouble("total")));
 		 }}}}catch(SQLException e) {
+
+				System.out.println("Dao con problemas "+e);
 			throw new RuntimeException (e);
 		}
 	     return basedato;	
