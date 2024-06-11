@@ -18,7 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
-public class Controllerpuertorico implements Initializable{
+public class Controllerpuertorico {
 	
 	private Daopuertorico puertoricoDao;
 	
@@ -48,7 +48,7 @@ public class Controllerpuertorico implements Initializable{
 	private ObservableList <Modelpuertorico> puertorico= FXCollections.observableArrayList();
 	
 
-	@Override
+	/*@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 	
 		id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -65,7 +65,7 @@ public class Controllerpuertorico implements Initializable{
 		valor.setStyle("-fx-alignment: CENTER-LEFT");
 		total.setCellValueFactory(new PropertyValueFactory<>("total"));
 		valor.setStyle("-fx-alignment: CENTER-LEFT");
-	}
+	}*/
 	
 	
 	public ObservableList<Modelpuertorico> getPuertorico(){
@@ -75,13 +75,13 @@ public class Controllerpuertorico implements Initializable{
 	
 	@FXML
 	private void botonNuevo(ActionEvent event) {
-		btnNuevo= new Button();
+		//btnNuevo= new Button();
 		
 		/*btnNuevo.setOnAction(e ->{
 			System.out.println("Si esta funcionando");
 				
 	});*/
-		System.out.println("Si esta funcionando");
+		System.out.println("Si esta funcionando, Magucho");
 			
 	}
 }
