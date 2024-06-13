@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,26 @@ public class Daopuertorico {
 	public Daopuertorico(Connection con) {
 		this.con= con;
 	}
+	
+	public int modificarLista(Date fecha,int cantidad,double valor_unitario, Integer id) {
+		
+		try {
+			final PreparedStatement pst=con.prepareStatement(
+					"UPDATE puertorico SET fecha= ?, cantidad= ?, valor_unitario= ? WHERE id= ?");
+			
+			try(pst){
+				pst.setDate(1, fecha);
+				pst.setInt(2, cantidad);
+				pst.setDouble(3,valor_unitario);
+				pst.setInt(4, id);
+				pst.execute();
+				
+				int updateCound=pst.getUpdateCount();
+			    return updateCound;
+			    
+			}}catch(SQLException ex) {
+			throw new RuntimeException(ex);
+		}}
 	
 	public ObservableList<Modelpuertorico> busquedaLista(String buscar){
 		
