@@ -19,15 +19,14 @@ public class Daopuertorico {
 		this.con= con;
 	}
 	
-	
 	public ObservableList<Modelpuertorico> busquedaLista(String buscar){
 		
 		ObservableList<Modelpuertorico> busqueda= FXCollections.observableArrayList();
 		try {
 			
-			final PreparedStatement sta= con.prepareStatement(""
-					+ "SELECT id, fecha, referencia, categoria, cantidad, valor_unitario, total FROM puertorico"
-					+ "WHERE categoria ="+buscar);
+			final PreparedStatement sta= con.prepareStatement
+					("SELECT id, fecha, referencia, categoria, cantidad, valor_unitario, total FROM puertorico "
+					+ "WHERE categoria LIKE "+"'%"+buscar+"%'"+" OR referencia LIKE "+"'%"+buscar+"%'");
 			try(sta){
 				
 				sta.execute();
@@ -47,6 +46,7 @@ public class Daopuertorico {
 		}
 		return busqueda;
 	}
+	
 	public ObservableList<Modelpuertorico> listaPuertorico(){
 		
 		ObservableList<Modelpuertorico> basedato= FXCollections.observableArrayList();

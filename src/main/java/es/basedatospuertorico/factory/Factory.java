@@ -23,7 +23,6 @@ public class Factory {
 		try {
 			
 			return this.source.getConnection();
-			
 		}catch(SQLException e) {
 			throw new RuntimeException(e);
 	   }}

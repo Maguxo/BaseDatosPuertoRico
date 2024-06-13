@@ -26,26 +26,7 @@ public class Controllerpuertorico {
 		this.puertoricoDao= new Daopuertorico(new Factory().recuperaConexion());
 	}
 	
-	/*@FXML
-	private Button btnNuevo;
-	@FXML
-	private TableView<Modelpuertorico> tablaPuertorico;
-	@FXML
-	private TableColumn<Modelpuertorico,Integer> id;
-	@FXML
-	private TableColumn<Modelpuertorico,Date> fecha;
-	@FXML
-	private TableColumn<Modelpuertorico,String> referencia;
-	@FXML
-	private TableColumn<Modelpuertorico,String> categoria;
-	@FXML
-	private TableColumn<Modelpuertorico,Integer> cantidad;
-	@FXML
-	private TableColumn<Modelpuertorico,Double> valor;
-	@FXML
-	private TableColumn<Modelpuertorico,Double> total;
-	
-	private ObservableList <Modelpuertorico> puertorico= FXCollections.observableArrayList();
+	/*
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
