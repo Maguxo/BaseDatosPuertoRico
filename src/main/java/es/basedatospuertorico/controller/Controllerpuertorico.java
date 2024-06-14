@@ -25,9 +25,7 @@ public class Controllerpuertorico {
 	public Controllerpuertorico() {
 		this.puertoricoDao= new Daopuertorico(new Factory().recuperaConexion());
 	}
-	
 	/*
-	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 	
@@ -47,6 +45,11 @@ public class Controllerpuertorico {
 		valor.setStyle("-fx-alignment: CENTER-LEFT");
 	}*/
 	
+	public int modificaBaseLista(Date fecha, int cantidad, Double valor, int id) {
+		
+		return puertoricoDao.modificarLista(fecha, cantidad, valor, id);
+	}
+
 	public ObservableList<Modelpuertorico> busquedaList(String busca){
 		
 		return puertoricoDao.busquedaLista(busca);
@@ -62,6 +65,5 @@ public class Controllerpuertorico {
 		/*btnNuevo.setOnAction(e ->{
 			System.out.println("Si esta funcionando");
 	});
-		System.out.println("Si esta funcionando, Magucho");
-	}*/
+		System.out.println("Si esta funcionando, Magucho");	}*/
 }

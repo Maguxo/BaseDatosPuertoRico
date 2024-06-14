@@ -32,9 +32,7 @@ public class Viewpuertorico  implements Initializable{
 	@FXML
 	private TextField txtBuscar;
 	@FXML
-	private Button btnNuevo;
-	@FXML
-	private Button btnBuscar;
+	private Button btnNuevo, btnBuscar, btnEditar;
 	@FXML
 	private TableView<Modelpuertorico> tablaPuertorico;
 	@FXML
@@ -60,7 +58,11 @@ public class Viewpuertorico  implements Initializable{
 	
 	public Viewpuertorico() {
 		this.Cpuertorico= new Controllerpuertorico();
-	}	
+	}
+	@FXML
+    private void botonEditar() {
+		System.out.println("Funciona botón  <<EDITAR>>");
+    }
 	@FXML
 	private void btnBusca(ActionEvent event) {
 		this.tablaPuertorico.getItems().clear();
@@ -70,6 +72,7 @@ public class Viewpuertorico  implements Initializable{
 		}
 		buscarDato(dato);
 	}
+	
 	@FXML
 	private void botonNuevo(ActionEvent event) {
 		//btnNuevo= new Button();
@@ -83,11 +86,10 @@ public class Viewpuertorico  implements Initializable{
 		
 	   llenarTabla();	
 	}
-
      private void buscarDato(String busca) {
 		
 		try {
-			
+		
 		ObservableList <Modelpuertorico> lista= Cpuertorico.busquedaList(busca);
 		this.id.setCellValueFactory(new PropertyValueFactory("id"));
 		this.id.setStyle("-fx-alignment:CENTER");
@@ -115,7 +117,7 @@ public class Viewpuertorico  implements Initializable{
 		this.cantidad.setCellValueFactory(new PropertyValueFactory("cantidad"));
 		this.valor_unitario.setCellValueFactory(new PropertyValueFactory<>("valor_unitario"));
 		this.total.setCellValueFactory(new PropertyValueFactory("total"));
-		
+		 
 		this.tablaPuertorico.setItems(lista);
 		}catch(Exception ex) {
 			System.out.println("Error no sé porque "+ex);
