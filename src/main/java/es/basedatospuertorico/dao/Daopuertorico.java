@@ -24,7 +24,11 @@ public class Daopuertorico {
 		
 		try {
 			final PreparedStatement pst=con.prepareStatement(
-					"UPDATE puertorico SET fecha= ?, cantidad= ?, valor_unitario= ? WHERE id= ?");
+					"UPDATE puertorico SET"
+					+ " fecha = ?,"
+					+ " cantidad = ?,"
+					+ " valor_unitario = ?"
+					+ " WHERE id = ?");
 			
 			try(pst){
 				pst.setDate(1, fecha);

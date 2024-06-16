@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
+import com.mchange.v2.cfg.PropertiesConfigSource.Parse;
+
 import es.basedatospuertorico.controller.Controllerpuertorico;
 import es.basedatospuertorico.mode.Modelpuertorico;
 import javafx.collections.FXCollections;
@@ -30,7 +32,7 @@ public class Viewpuertorico  implements Initializable{
 	@FXML
 	private DatePicker myDate;
 	@FXML
-	private TextField txtBuscar;
+	private TextField txtBuscar,txtId,txtCategoria,txtCantidad,txtValor,txtTotal;
 	@FXML
 	private Button btnNuevo, btnBuscar, btnEditar;
 	@FXML
@@ -52,15 +54,37 @@ public class Viewpuertorico  implements Initializable{
 	
 	private Alert alerta= new Alert(AlertType.INFORMATION);
 	
-	//private ObservableList <Modelpuertorico> observableList= FXCollections.observableArrayList();
+	private ObservableList <Modelpuertorico> lista;
 		
 	private Controllerpuertorico Cpuertorico;
 	
 	public Viewpuertorico() {
 		this.Cpuertorico= new Controllerpuertorico();
 	}
+	@SuppressWarnings("unused")
 	@FXML
     private void botonEditar() {
+		
+		LocalDate fecha= myDate.getValue();
+		String capturaFecha=fecha.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		
+	    Date fechaP= Date.valueOf(capturaFecha);
+		String categotia= txtCategoria.getText();
+		Integer cantidad= Integer.parseInt(txtCantidad.getText());
+		Double valor= Double.parseDouble(txtValor.getText());
+		Double total= Double.parseDouble(txtTotal.getText());
+		Integer id= Integer.parseInt(txtId.getText());
+		
+		  this.Cpuertorico.modificaBaseLista(fechaP, cantidad, valor, id);
+		if(valor) {
+			System.out.println("Este campo no existe en la base de datos puerto rico para modificar.");
+			
+		}else {
+			System.out.println("Modificado.");
+			
+				
+		}
+		
 		System.out.println("Funciona botón  <<EDITAR>>");
     }
 	@FXML
@@ -90,7 +114,7 @@ public class Viewpuertorico  implements Initializable{
 		
 		try {
 		
-		ObservableList <Modelpuertorico> lista= Cpuertorico.busquedaList(busca);
+		 lista= Cpuertorico.busquedaList(busca);
 		this.id.setCellValueFactory(new PropertyValueFactory("id"));
 		this.id.setStyle("-fx-alignment:CENTER");
 		this.fecha.setCellValueFactory(new PropertyValueFactory("fecha"));
