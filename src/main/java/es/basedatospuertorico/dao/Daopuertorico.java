@@ -25,23 +25,23 @@ public class Daopuertorico {
 		try {
 			final PreparedStatement pst=con.prepareStatement(
 					"UPDATE puertorico SET"
-					+ " fecha = ?,"
-					+ " cantidad = ?,"
-					+ " valor_unitario = ?"
+					+ " fecha = ?"
+					+ ", cantidad = ?"
+					+ ", valor_unitario = ?"
 					+ " WHERE id = ?");
 			
 			try(pst){
-				pst.setDate(1, fecha);
-				pst.setInt(2, cantidad);
+				pst.setDate(1,fecha);
+				pst.setInt(2,cantidad);
 				pst.setDouble(3,valor_unitario);
-				pst.setInt(4, id);
-				pst.execute();
+				pst.setInt(4,id);
+			pst.execute();
 				
-				int updateCound=pst.getUpdateCount();
-			    return updateCound;
+			int updateCound=pst.getUpdateCount();
+			return updateCound;
 			    
 			}}catch(SQLException ex) {
-			throw new RuntimeException(ex);
+			throw new RuntimeException("Algo pasa: "+ex);
 		}}
 	
 	public ObservableList<Modelpuertorico> busquedaLista(String buscar){

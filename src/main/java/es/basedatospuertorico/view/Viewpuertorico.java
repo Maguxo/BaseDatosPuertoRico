@@ -57,36 +57,50 @@ public class Viewpuertorico  implements Initializable{
 	private ObservableList <Modelpuertorico> lista;
 		
 	private Controllerpuertorico Cpuertorico;
+	@FXML
+	LocalDate fecham;
 	
 	public Viewpuertorico() {
 		this.Cpuertorico= new Controllerpuertorico();
 	}
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+	   llenarTabla();	
+	}
 	@SuppressWarnings("unused")
 	@FXML
     private void botonEditar() {
-		
-		LocalDate fecha= myDate.getValue();
-		String capturaFecha=fecha.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		
-	    Date fechaP= Date.valueOf(capturaFecha);
-		String categotia= txtCategoria.getText();
-		Integer cantidad= Integer.parseInt(txtCantidad.getText());
-		Double valor= Double.parseDouble(txtValor.getText());
-		Double total= Double.parseDouble(txtTotal.getText());
-		Integer id= Integer.parseInt(txtId.getText());
-		
-		  this.Cpuertorico.modificaBaseLista(fechaP, cantidad, valor, id);
-		if(valor) {
-			System.out.println("Este campo no existe en la base de datos puerto rico para modificar.");
-			
+	  
+		if((this.myDate==null) || (txtCantidad.getText().isBlank()) || (txtValor.getText().isBlank()) 
+				|| (txtId.getText().isBlank())) {	
+			JOptionPane.showMessageDialog(null, "Campo vacíos, por favor ingrese el Id, Cantidad y Valor que desea modificar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 		}else {
-			System.out.println("Modificado.");
 			
+			 this.fecham= myDate.getValue();
+				//String capturaFecha=fecha.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			    Date fechamm= Date.valueOf(this.fecham.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+				Integer cantidadm= Integer.parseInt(txtCantidad.getText().trim());
+				Double valorm= Double.parseDouble(txtValor.getText().trim());
+				Integer idm= Integer.parseInt(txtId.getText().trim());
+				//Double totalm= Double.parseDouble(txtTotal.getText().trim());
+				String categotiam= txtCategoria.getText().trim();
 				
-		}
-		
-		System.out.println("Funciona botón  <<EDITAR>>");
-    }
+			System.out.println("provando valores "+fecham+" "+cantidadm+" "+valorm);
+			try {
+				this.Cpuertorico.modificaBaseLista(fechamm, cantidadm, valorm, idm);
+				this.tablaPuertorico.getItems().clear();
+				 llenarTabla();
+			}catch(Exception ex) {
+				System.out.println("Hay un problema "+ ex);
+			}  
+			System.out.println("Funciona botón  <<EDITAR>>");		
+	}txtId.clear();
+	 myDate.getEditor().clear();
+	 txtCategoria.clear();
+	 txtCantidad.clear();
+	 txtValor.clear();
+	 txtTotal.clear();}
 	@FXML
 	private void btnBusca(ActionEvent event) {
 		this.tablaPuertorico.getItems().clear();
@@ -95,21 +109,14 @@ public class Viewpuertorico  implements Initializable{
 			JOptionPane.showMessageDialog(null, "Campo vacío, por favor ingrese REFERENCIA ó CATEGORÍA del arículo que está buscando.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 		}
 		buscarDato(dato);
-	}
-	
+		txtBuscar.clear();
+	}	
 	@FXML
 	private void botonNuevo(ActionEvent event) {
-		//btnNuevo= new Button();
-		/*btnNuevo.setOnAction(e ->{
-			System.out.println("Si esta funcionando");			
-	});*/
+
 		System.out.println("Sí esta funcionando, Magucho");
 	}	
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-	   llenarTabla();	
-	}
+	
      private void buscarDato(String busca) {
 		
 		try {
