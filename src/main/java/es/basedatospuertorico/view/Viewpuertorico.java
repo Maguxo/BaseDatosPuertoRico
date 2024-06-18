@@ -68,6 +68,24 @@ public class Viewpuertorico  implements Initializable{
 		
 	   llenarTabla();	
 	}
+	@FXML
+	private void botonEliminar(ActionEvent event) {
+
+		System.out.println("Sí esta funcionando botón ELIMINAR, Magucho");
+	}
+	
+	@FXML
+	private void botonImprimir(ActionEvent event) {
+
+		System.out.println("Sí esta funcionando botón IMPRIMIR, Magucho");
+	}
+	
+	@FXML
+	private void botonInsertar(ActionEvent event) {
+
+		System.out.println("Sí esta funcionando botón INSERTAR, Magucho");
+	}
+	
 	@SuppressWarnings("unused")
 	@FXML
     private void botonEditar() {
@@ -111,13 +129,8 @@ public class Viewpuertorico  implements Initializable{
 		buscarDato(dato);
 		txtBuscar.clear();
 	}	
-	@FXML
-	private void botonNuevo(ActionEvent event) {
-
-		System.out.println("Sí esta funcionando, Magucho");
-	}	
-	
-     private void buscarDato(String busca) {
+		
+    private void buscarDato(String busca) {
 		
 		try {
 		

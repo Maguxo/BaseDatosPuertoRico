@@ -74,7 +74,7 @@
          </font>
       </TextField>
       <DatePicker fx:id="myDate" layoutX="121.0" layoutY="102.0" onAction="#getDate" prefHeight="25.0" prefWidth="112.0" />
-      <Button fx:id="btnNuevo" alignment="CENTER_RIGHT" layoutX="36.0" layoutY="362.0" mnemonicParsing="false" onAction="#botonNuevo" prefHeight="46.0" prefWidth="101.0" text="Nuevo">
+      <Button fx:id="btnNuevo" alignment="CENTER_RIGHT" layoutX="36.0" layoutY="362.0" mnemonicParsing="false" onAction="#botonInsertar" prefHeight="46.0" prefWidth="101.0" text="Insertar">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
@@ -84,12 +84,12 @@
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnGuardar" alignment="CENTER_RIGHT" layoutX="36.0" layoutY="427.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="101.0" text="Guardar"> 
+      <Button fx:id="btnGuardar" alignment="CENTER_RIGHT" layoutX="36.0" layoutY="427.0" mnemonicParsing="false" onAction="#botonImprimir" prefHeight="46.0" prefWidth="101.0" text="Imprimir"> 
        <font>      
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnCancelar" alignment="CENTER_RIGHT" layoutX="165.0" layoutY="427.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="101.0" text="Cancelar">
+      <Button fx:id="btnCancelar" alignment="CENTER_RIGHT" layoutX="165.0" layoutY="427.0" mnemonicParsing="false" onAction="#botonEliminar" prefHeight="46.0" prefWidth="101.0" text="Eliminar">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -104,14 +104,14 @@
             <Image url="@../imagenes/iconEditar.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="36.0" layoutY="427.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="38.0" fitWidth="72.0" layoutX="24.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../imagenes/iconGuardar.png" />
+            <Image url="@../imagenes/imprimir.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="38.0" fitWidth="44.0" layoutX="169.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="46.0" fitWidth="82.0" layoutX="147.0" layoutY="427.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../imagenes/iconCancelar.png" />
+            <Image url="@../imagenes/basura.png" />
          </image>
       </ImageView>
       <TableView fx:id="tablaPuertorico" editable="true" layoutX="293.0" layoutY="160.0" prefHeight="262.0" prefWidth="598.0">

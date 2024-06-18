@@ -4,7 +4,6 @@ import java.sql.Blob;
 import java.sql.Date;
 
 public class Modelpuertorico {
-
 	private int id;
 	private Date fecha;
 	private String referencia;
