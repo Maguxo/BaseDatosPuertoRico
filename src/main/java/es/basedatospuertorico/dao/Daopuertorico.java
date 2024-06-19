@@ -20,6 +20,23 @@ public class Daopuertorico {
 		this.con= con;
 	}
 	
+	public int eliminarLista(Integer id) {
+		
+		try {
+			
+			final PreparedStatement st= con.prepareStatement(""
+					+ " DELETE FROM puertorico WHERE id = ?");
+			try(st){
+				
+				st.setInt(1, id);
+				st.execute();
+				
+		    int deleteCount= st.getUpdateCount();
+		    return deleteCount;
+		}}catch(SQLException e) {
+			
+			throw new RuntimeException(e);
+    }}
 	public void insertarLista(Modelpuertorico puertorico) {
 		
 		try {

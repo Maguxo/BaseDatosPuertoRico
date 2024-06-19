@@ -24,6 +24,16 @@ public class Modelpuertorico {
 		this.valor_unitario= valor_unitario;
 		this.total= total;
 	}
+	public Modelpuertorico( Date fecha, String referencia,
+			String categoria, int cantidad, Double valor_unitario, Double total) {	
+		
+		this.fecha=fecha;
+		this.referencia=referencia;
+		this.categoria= categoria;
+		this.cantidad= cantidad;
+		this.valor_unitario= valor_unitario;
+		this.total= total;
+	}
 
 	public int getId() {
 		return id;

@@ -83,12 +83,23 @@ public class Viewpuertorico  implements Initializable{
 	@FXML
 	private void botonInsertar(ActionEvent event) {
        
-		if((this.myDate==null) || (txtReferencia.getText()==null) ||(txtCategoria.getText()==null)
-				|| (txtCantidad.getText().isBlank()) || (txtValor.getText().isBlank() 
-				|| (txtTotal.getText()==null)) || (txtId.getText().isBlank())) {	
+		if((this.myDate==null) || (txtReferencia.getText().trim().isBlank()) ||(txtCategoria.getText().trim().isBlank())
+				|| (txtCantidad.getText().trim().isBlank()) || (txtValor.getText().trim().isBlank() 
+				|| (txtTotal.getText().trim().isBlank()))) {	
 			JOptionPane.showMessageDialog(null, "Campo vacíos. Por favor ingrese fecha, Referencia, "
 					+ "Categoria,Cantidad, Valor y el Total que desea INSERTAR.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 		}
+		this.fecham= myDate.getValue();
+		Date fechaf= Date.valueOf(this.fecham.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+		String referenciaf= String.valueOf(txtReferencia.getText().trim());
+		String categoriaf= txtCategoria.getText().trim();
+		Integer cantidadf= Integer.parseInt(txtCantidad.getText().trim());
+		Double valorf= Double.parseDouble(txtValor.getText().trim());
+	    Double totalf= Double.parseDouble(txtTotal.getText().trim());
+		
+		var basePuertorico= new Modelpuertorico(fechaf,referenciaf,categoriaf, cantidadf, valorf, totalf);
+		
+		Cpuertorico.insertaBaseList(basePuertorico);
 		
 	}
 	
@@ -100,7 +111,6 @@ public class Viewpuertorico  implements Initializable{
 				|| (txtId.getText().isBlank())) {	
 			JOptionPane.showMessageDialog(null, "Campo vacíos, por favor ingrese el Id, Cantidad y Valor que desea modificar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 		}else {
-			
 			 this.fecham= myDate.getValue();
 				//String capturaFecha=fecha.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 			    Date fechamm= Date.valueOf(this.fecham.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
@@ -110,7 +120,7 @@ public class Viewpuertorico  implements Initializable{
 				//Double totalm= Double.parseDouble(txtTotal.getText().trim());
 				String categotiam= txtCategoria.getText().trim();
 				
-			System.out.println("provando valores "+fecham+" "+cantidadm+" "+valorm);
+			 System.out.println("provando valores "+fecham+" "+cantidadm+" "+valorm);
 			try {
 				this.Cpuertorico.modificaBaseLista(fechamm, cantidadm, valorm, idm);
 				this.tablaPuertorico.getItems().clear();
