@@ -32,9 +32,9 @@ public class Viewpuertorico  implements Initializable{
 	@FXML
 	private DatePicker myDate;
 	@FXML
-	private TextField txtBuscar,txtId,txtCategoria,txtCantidad,txtValor,txtTotal;
+	private TextField txtBuscar,txtId,txtReferencia,txtCategoria,txtCantidad,txtValor,txtTotal;
 	@FXML
-	private Button btnNuevo, btnBuscar, btnEditar;
+	private Button btnInsertar, btnBuscar, btnEditar, btnImprimir,btnEliminar;
 	@FXML
 	private TableView<Modelpuertorico> tablaPuertorico;
 	@FXML
@@ -82,8 +82,14 @@ public class Viewpuertorico  implements Initializable{
 	
 	@FXML
 	private void botonInsertar(ActionEvent event) {
-
-		System.out.println("Sí esta funcionando botón INSERTAR, Magucho");
+       
+		if((this.myDate==null) || (txtReferencia.getText()==null) ||(txtCategoria.getText()==null)
+				|| (txtCantidad.getText().isBlank()) || (txtValor.getText().isBlank() 
+				|| (txtTotal.getText()==null)) || (txtId.getText().isBlank())) {	
+			JOptionPane.showMessageDialog(null, "Campo vacíos. Por favor ingrese fecha, Referencia, "
+					+ "Categoria,Cantidad, Valor y el Total que desea INSERTAR.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+		}
+		
 	}
 	
 	@SuppressWarnings("unused")
@@ -112,7 +118,7 @@ public class Viewpuertorico  implements Initializable{
 			}catch(Exception ex) {
 				System.out.println("Hay un problema "+ ex);
 			}  
-			System.out.println("Funciona botón  <<EDITAR>>");		
+			System.out.println("Funciona botón <<EDITAR>>");		
 	}txtId.clear();
 	 myDate.getEditor().clear();
 	 txtCategoria.clear();

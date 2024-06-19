@@ -20,6 +20,27 @@ public class Daopuertorico {
 		this.con= con;
 	}
 	
+	public void insertarLista(Modelpuertorico puertorico) {
+		
+		try {
+			
+			final PreparedStatement st= con.prepareStatement(""
+					+ " INSERT INTO puertorico (fecha, referencia, categoria, cantidad, valor_unitario, total)"
+					+ " VALUES(?,?,?,?,?,?)");
+			try(st){
+				st.setDate(1, puertorico.getFecha());
+				st.setString(2, puertorico.getReferencia());
+				st.setString(3, puertorico.getCategoria());
+				st.setInt(4, puertorico.getCantidad());
+				st.setDouble(5, puertorico.getValor_unitario());
+				st.setDouble(6, puertorico.getTotal());
+				
+				st.execute();
+		}}catch(SQLException e) {
+			
+			throw new RuntimeException(e);
+	}}
+	
 	public int modificarLista(Date fecha,int cantidad,double valor_unitario, Integer id) {
 		
 		try {
