@@ -70,8 +70,20 @@ public class Viewpuertorico  implements Initializable{
 	}
 	@FXML
 	private void botonEliminar(ActionEvent event) {
-
-		System.out.println("Sí esta funcionando botón ELIMINAR, Magucho");
+		
+		try {
+		
+		if(txtId.getText().trim().isBlank()) {
+			JOptionPane.showMessageDialog(null, "Campo vacío. Por favor ingrese Id ", "Advertencia", JOptionPane.WARNING_MESSAGE);
+		}
+		
+		 int idBase=Integer.valueOf(txtId.getText().trim()); 
+		 Cpuertorico.eliminaBaseList(idBase);
+		}catch(Exception ex) {
+			JOptionPane.showMessageDialog(null, "NO se logró eliminar el Id seleccionado \n"+ ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+		}
+		llenarTabla();
+		limpia();
 	}
 	
 	@FXML
@@ -100,9 +112,9 @@ public class Viewpuertorico  implements Initializable{
 		var basePuertorico= new Modelpuertorico(fechaf,referenciaf,categoriaf, cantidadf, valorf, totalf);
 		
 		Cpuertorico.insertaBaseList(basePuertorico);
-		
+		llenarTabla();
+		limpia();	
 	}
-	
 	@SuppressWarnings("unused")
 	@FXML
     private void botonEditar() {
@@ -129,12 +141,7 @@ public class Viewpuertorico  implements Initializable{
 				System.out.println("Hay un problema "+ ex);
 			}  
 			System.out.println("Funciona botón <<EDITAR>>");		
-	}txtId.clear();
-	 myDate.getEditor().clear();
-	 txtCategoria.clear();
-	 txtCantidad.clear();
-	 txtValor.clear();
-	 txtTotal.clear();}
+	}limpia();}
 	@FXML
 	private void btnBusca(ActionEvent event) {
 		this.tablaPuertorico.getItems().clear();
@@ -143,7 +150,7 @@ public class Viewpuertorico  implements Initializable{
 			JOptionPane.showMessageDialog(null, "Campo vacío, por favor ingrese REFERENCIA ó CATEGORÍA del arículo que está buscando.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 		}
 		buscarDato(dato);
-		txtBuscar.clear();
+		limpia();
 	}	
 		
     private void buscarDato(String busca) {
@@ -189,5 +196,16 @@ public class Viewpuertorico  implements Initializable{
 		LocalDate fecha= myDate.getValue();
 		String capturaFecha=fecha.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		System.out.println(capturaFecha);
+	}
+	
+	private void limpia() {
+		txtId.clear();
+		txtReferencia.clear();
+		 myDate.getEditor().clear();
+		 txtCategoria.clear();
+		 txtCantidad.clear();
+		 txtValor.clear();
+		 txtTotal.clear();
+		 txtBuscar.clear();
 	}
 }

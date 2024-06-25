@@ -27,6 +27,11 @@ public class Controllerpuertorico {
 		this.puertoricoDao= new Daopuertorico(new Factory().recuperaConexion());
 	}
 	
+	public int eliminaBaseList(Integer id) {
+		
+		return puertoricoDao.eliminarLista(id);
+	}
+	
 	public void insertaBaseList(Modelpuertorico puertorico) {
 		
 		puertoricoDao.insertarLista(puertorico);
