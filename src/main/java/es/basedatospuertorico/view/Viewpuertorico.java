@@ -34,7 +34,7 @@ public class Viewpuertorico  implements Initializable{
 	@FXML
 	private TextField txtBuscar,txtId,txtReferencia,txtCategoria,txtCantidad,txtValor,txtTotal;
 	@FXML
-	private Button btnInsertar, btnBuscar, btnEditar, btnImprimir,btnEliminar;
+	private Button btnInsertar, btnBuscar, btnEditar, btnLimpiar,btnEliminar;
 	@FXML
 	private TableView<Modelpuertorico> tablaPuertorico;
 	@FXML
@@ -73,28 +73,30 @@ public class Viewpuertorico  implements Initializable{
 		
 		try {
 		
-		if(txtId.getText().trim().isBlank()) {
+		 if(txtId.getText().trim().isBlank()) {
 			JOptionPane.showMessageDialog(null, "Campo vacío. Por favor ingrese Id ", "Advertencia", JOptionPane.WARNING_MESSAGE);
 		}
 		
 		 int idBase=Integer.valueOf(txtId.getText().trim()); 
 		 Cpuertorico.eliminaBaseList(idBase);
 		}catch(Exception ex) {
-			JOptionPane.showMessageDialog(null, "NO se logró eliminar el Id seleccionado \n"+ ex, "ERROR", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "NO se logró <<ELIMINAR>> el Id seleccionado \n"+ ex, "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 		llenarTabla();
 		limpia();
 	}
 	
 	@FXML
-	private void botonImprimir(ActionEvent event) {
+	private void botonLimpiar(ActionEvent event) {
 
-		System.out.println("Sí esta funcionando botón IMPRIMIR, Magucho");
+         JOptionPane.showMessageDialog(null, "CAMPOS LIMPIOS.", "El sistema informa:", JOptionPane.INFORMATION_MESSAGE);
+         limpia();
 	}
 	
 	@FXML
 	private void botonInsertar(ActionEvent event) {
-       
+       	
+		try {
 		if((this.myDate==null) || (txtReferencia.getText().trim().isBlank()) ||(txtCategoria.getText().trim().isBlank())
 				|| (txtCantidad.getText().trim().isBlank()) || (txtValor.getText().trim().isBlank() 
 				|| (txtTotal.getText().trim().isBlank()))) {	
@@ -112,18 +114,24 @@ public class Viewpuertorico  implements Initializable{
 		var basePuertorico= new Modelpuertorico(fechaf,referenciaf,categoriaf, cantidadf, valorf, totalf);
 		
 		Cpuertorico.insertaBaseList(basePuertorico);
+		}catch(Exception ex){
+			JOptionPane.showMessageDialog(null, "Campo vacíos. Por favor Los datos "
+					+ "completos para poder <<INSERTAR>> en la tabla", "Advertencia.", JOptionPane.ERROR_MESSAGE);
+		}
 		llenarTabla();
 		limpia();	
 	}
+	
 	@SuppressWarnings("unused")
 	@FXML
     private void botonEditar() {
-	  
-		if((this.myDate==null) || (txtCantidad.getText().isBlank()) || (txtValor.getText().isBlank()) 
+		
+		try {
+		   if((this.myDate==null) || (txtCantidad.getText().isBlank()) || (txtValor.getText().isBlank()) 
 				|| (txtId.getText().isBlank())) {	
 			JOptionPane.showMessageDialog(null, "Campo vacíos, por favor ingrese el Id, Cantidad y Valor que desea modificar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-		}else {
-			 this.fecham= myDate.getValue();
+		    }else {
+			  this.fecham= myDate.getValue();
 				//String capturaFecha=fecha.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 			    Date fechamm= Date.valueOf(this.fecham.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 				Integer cantidadm= Integer.parseInt(txtCantidad.getText().trim());
@@ -132,18 +140,19 @@ public class Viewpuertorico  implements Initializable{
 				//Double totalm= Double.parseDouble(txtTotal.getText().trim());
 				String categotiam= txtCategoria.getText().trim();
 				
-			 System.out.println("provando valores "+fecham+" "+cantidadm+" "+valorm);
-			try {
+			     System.out.println("provando valores "+fecham+" "+cantidadm+" "+valorm);
+			
 				this.Cpuertorico.modificaBaseLista(fechamm, cantidadm, valorm, idm);
 				this.tablaPuertorico.getItems().clear();
-				 llenarTabla();
-			}catch(Exception ex) {
-				System.out.println("Hay un problema "+ ex);
-			}  
-			System.out.println("Funciona botón <<EDITAR>>");		
+				 llenarTabla();		
+	        }}catch(Exception ex) {
+		        JOptionPane.showMessageDialog(null, "Campo vacíos. Por favor Los datos "
+				             + "completos para poder <<ACTUALIZAR>> la tabla", "Advertencia.", JOptionPane.ERROR_MESSAGE);
 	}limpia();}
+	
 	@FXML
 	private void btnBusca(ActionEvent event) {
+		
 		this.tablaPuertorico.getItems().clear();
 		String dato= this.txtBuscar.getText().trim();
 		if(txtBuscar.getText().isBlank()) {	
@@ -207,5 +216,10 @@ public class Viewpuertorico  implements Initializable{
 		 txtValor.clear();
 		 txtTotal.clear();
 		 txtBuscar.clear();
+	}
+	
+	private static boolean isNumeric(String str) {
+		
+		return str.matches("-?\\d+(\\.\\d+)?");
 	}
 }
