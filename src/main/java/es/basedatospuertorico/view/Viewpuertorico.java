@@ -166,17 +166,17 @@ public class Viewpuertorico  implements Initializable{
 		
 		try {
 		
-		 lista= Cpuertorico.busquedaList(busca);
-		this.id.setCellValueFactory(new PropertyValueFactory("id"));
-		this.id.setStyle("-fx-alignment:CENTER");
-		this.fecha.setCellValueFactory(new PropertyValueFactory("fecha"));
-		this.referencia.setCellValueFactory(new PropertyValueFactory("referencia"));
-		this.categoria.setCellValueFactory(new PropertyValueFactory("categoria"));
-		this.cantidad.setCellValueFactory(new PropertyValueFactory("cantidad"));
-		this.valor_unitario.setCellValueFactory(new PropertyValueFactory<>("valor_unitario"));
-		this.total.setCellValueFactory(new PropertyValueFactory("total"));
-		
-		this.tablaPuertorico.setItems(lista);
+			lista= Cpuertorico.busquedaList(busca);
+			this.id.setCellValueFactory(new PropertyValueFactory("id"));
+			this.id.setStyle("-fx-alignment:CENTER");
+			this.fecha.setCellValueFactory(new PropertyValueFactory("fecha"));
+			this.referencia.setCellValueFactory(new PropertyValueFactory("referencia"));
+			this.categoria.setCellValueFactory(new PropertyValueFactory("categoria"));
+			this.cantidad.setCellValueFactory(new PropertyValueFactory("cantidad"));
+			this.valor_unitario.setCellValueFactory(new PropertyValueFactory<>("valor_unitario"));
+			this.total.setCellValueFactory(new PropertyValueFactory("total"));
+			
+			this.tablaPuertorico.setItems(lista);
 		}catch(Exception ex) {
 			System.out.println("Error al buscar "+ex);
 	}}
@@ -208,8 +208,8 @@ public class Viewpuertorico  implements Initializable{
 	}
 	
 	private void limpia() {
-		txtId.clear();
-		txtReferencia.clear();
+		 txtId.clear();
+		 txtReferencia.clear();
 		 myDate.getEditor().clear();
 		 txtCategoria.clear();
 		 txtCantidad.clear();
