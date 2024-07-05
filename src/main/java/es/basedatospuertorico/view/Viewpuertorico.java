@@ -170,11 +170,17 @@ public class Viewpuertorico  implements Initializable{
 			this.id.setCellValueFactory(new PropertyValueFactory("id"));
 			this.id.setStyle("-fx-alignment:CENTER");
 			this.fecha.setCellValueFactory(new PropertyValueFactory("fecha"));
+			this.fecha.setStyle("-fx-alignment:CENTER");
 			this.referencia.setCellValueFactory(new PropertyValueFactory("referencia"));
+			this.referencia.setStyle("-fx-alignment:CENTER");
 			this.categoria.setCellValueFactory(new PropertyValueFactory("categoria"));
+			this.categoria.setStyle("-fx-alignment:CENTER");
 			this.cantidad.setCellValueFactory(new PropertyValueFactory("cantidad"));
+			this.cantidad.setStyle("-fx-alignment:CENTER");
 			this.valor_unitario.setCellValueFactory(new PropertyValueFactory<>("valor_unitario"));
+			this.valor_unitario.setStyle("-fx-alignment:CENTER");
 			this.total.setCellValueFactory(new PropertyValueFactory("total"));
+			this.total.setStyle("-fx-alignment:CENTER");
 			
 			this.tablaPuertorico.setItems(lista);
 		}catch(Exception ex) {
@@ -187,13 +193,19 @@ public class Viewpuertorico  implements Initializable{
 			
 		ObservableList <Modelpuertorico> lista= Cpuertorico.getPuertorico();
 		this.id.setCellValueFactory(new PropertyValueFactory("id"));
+		this.id.setStyle("-fx-alignment:CENTER");
 		this.fecha.setCellValueFactory(new PropertyValueFactory("fecha"));
+		this.fecha.setStyle("-fx-alignment:CENTER");
 		this.referencia.setCellValueFactory(new PropertyValueFactory("referencia"));
+		this.referencia.setStyle("-fx-alignment:CENTER");
 		this.categoria.setCellValueFactory(new PropertyValueFactory("categoria"));
+		this.categoria.setStyle("-fx-alignment:CENTER");
 		this.cantidad.setCellValueFactory(new PropertyValueFactory("cantidad"));
+		this.cantidad.setStyle("-fx-alignment:CENTER");
 		this.valor_unitario.setCellValueFactory(new PropertyValueFactory<>("valor_unitario"));
+		this.valor_unitario.setStyle("-fx-alignment:CENTER");
 		this.total.setCellValueFactory(new PropertyValueFactory("total"));
-		 
+		this.total.setStyle("-fx-alignment:CENTER");
 		this.tablaPuertorico.setItems(lista);
 		}catch(Exception ex) {
 			System.out.println("Error no sé porque "+ex);
